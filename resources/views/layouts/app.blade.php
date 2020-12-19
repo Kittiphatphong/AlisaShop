@@ -77,6 +77,7 @@ input[type=number]::-webkit-outer-spin-button {
   font-weight: bold;
   text-align: center;
 }
+
     </style>
         @livewireStyles
     </head>

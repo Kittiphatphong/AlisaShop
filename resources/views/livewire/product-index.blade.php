@@ -1,44 +1,63 @@
 <div>
   <div>
-  
-<button class="btn btn-dark mb-1" data-toggle="modal" data-target="#form-product" data-whatever="@fat">Add</button>
+  <div class="fixed-bottom">
+<div class="d-flex justify-content-start">
+
+<button class="btn btn-link ml-2 mb-2" data-toggle="modal" data-target="#form-product" data-whatever="@fat">
+<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+</svg>
+</button>
+</div>
+</div>
+<div class="clearfix">
 @if(session()->has('message'))
 <span class="text-success float-right">{{session('message')}}</span>
+
 @endif
 @error('addQuantity')<span class="text-danger float-right">{{ $message }}</span> @enderror
-    <div class="table-responsive rounded" >
-    <table class="table table-bordered ">
-       <thead class="bg-light">
-       <tr>
-       <th>Product</th>
-       <th>Total</th>
-       
-       </tr>
-       </thead>
-       <tbody>
+
+</div>
+<hr class="mb-3">
+<section>
        @foreach($products as $product)
-       <tr>
-       <td><div x-data="{ open: false }" >
+
+
+       <div class="row mb-3">
+            <div class=" col-lg-9 col-xl-9">
+              <div>
+                <div class="d-flex justify-content-between">
+                  <div>
+                  
+                  <div x-data="{ open: false }" >
        <div class="d-flex justify-content-start">
-        <button @click="open = true" class="mr-2"><p class="overflow-auto">{{$product->name}}</p></button>
-        <div x-show="open" @click.away="open = false" >
-            <button class="btn btn-warning btn-sm " wire:click="selectItem({{$product->id}},'edit')">Edit</button>
-            <button class="btn btn-danger btn-sm"  wire:click="selectItem({{$product->id}},'delete')">Delete</button>
+        <button @click="open = true" class="mr-2 block text-left">
+        <h5>{{$product->name}}</h5>
+        
+        </button>
+      
         </div>
-        </div>
-        <div x-show="open" @click.away="open = false" class="mt-1 bg-light pl-1 rounded">
+        <div x-show="open" @click.away="open = false" class="mt-1 bg-light  rounded">
         <ul>
-        <li>{{$product->categories->name}}</li>
-        <li>Price: {{number_format($product->price)}} {{$product->currency}}</li>
-        <li>Sell: {{number_format($product->price_sell)}} {{$product->currency}}</li>
+        <p class="mb-3 text-muted text-uppercase small ">{{$product->categories->name}}</p>
+        <p class="mb-0"><span><strong id="summary">Sell: {{number_format($product->price_sell)}} {{$product->currency}}</strong></span></p class="mb-0">
+        <li>Cost: {{number_format($product->price)}} {{$product->currency}}</li>
         <li>Quantity: {{number_format($product->quantity)}}</li>
         </ul>
+        <button class="btn btn-warning btn-sm " wire:click="selectItem({{$product->id}},'edit')">Edit</button>
+        <button class="btn btn-danger btn-sm"  wire:click="selectItem({{$product->id}},'delete')">Delete</button>
         </div>
         </div>
-    </div></td>
-       <td>
-       <div x-data="{ open: false }" class="row ml-1">
-        <button @click="open = true" class="mx-1">10</button>
+        
+                   
+                  
+                  </div>
+                  <div>
+                 
+                    
+                    <div x-data="{ open: false }" class="row form-text mr-2">
+        <button @click="open = true">(Note, {{number_format($product->quantity)}} piece)</button>
         <div x-show="open" @click.away="open = false" >
           <div class="d-flex justify-content-start">
           <div class="number-input rounded">
@@ -47,7 +66,7 @@
         <button  class="plus" wire:click="increment"></button>
       </div>
      
-            <button class="btn btn-success ml-2" wire:click="updateQuantity({{$product->id}})">
+            <button class="btn btn-success ml-2" wire:click="updateQuantity({{$product->id}})" onclick="confirm('Amount {{$addQuantity}} is correct ?') || event.stopImmediatePropagation()">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
 </svg>
@@ -56,14 +75,20 @@
             </div>
         </div>
     </div>
+                    
+                  </div>
+                </div>
+         
+              </div>
+            </div>
+          </div>
+          <hr class="mb-3">
 
-       </td>
-       </tr>
+      
        @endforeach
-       </tbody>
-    </table>
+    
     {{$products->links()}}
-    </div>
+    </section>
 
 
     <div class="modal fade" id="form-product" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
