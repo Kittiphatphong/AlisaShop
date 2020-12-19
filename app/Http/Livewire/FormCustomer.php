@@ -74,7 +74,7 @@ class FormCustomer extends Component
     $this->clearData();
     $this->emit('refreshTable');
     $this->dispatchBrowserEvent('closeModalAdd');
-    
+    //fasdfasdf
     }
   
 }
