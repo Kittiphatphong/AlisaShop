@@ -4,14 +4,22 @@
             Orders
         </h2></a>
     </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    @livewire('order.order-item')
-                </div>
-            </div>
+    @if($errors->any())
+            <div class="alert alert-danger">
+            @foreach($errors->all() as $error)
+            <p class="border">{{$error}}</p>
+            @endforeach
         </div>
-    </div>
+    @endif
+    @if(Session()->has('success'))
+                        <div class="alert alert-success">
+                            {{ Session()->get('success') }}
+                        </div>
+            @endif
+            @if(Session()->has('warning'))
+                        <div class="alert alert-danger">
+                            {{Session()->get('warning')}}
+                        </div>
+            @endif
+   <livewire:order.order-item/>
 </x-app-layout>

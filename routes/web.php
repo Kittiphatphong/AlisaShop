@@ -34,6 +34,10 @@ Route::get('/category',[CategoryController::class,'index'])->name('categoryList'
 Route::get('/customer',[CustomerController::class,'index'])->name('customerList');
 
 Route::get('/order',[OrderController::class,'index'])->name('orderList');
+Route::post('/order',[OrderController::class,'store'])->name('order.store');
+Route::get('/order-detail/{id}',[OrderController::class,'formDetail'])->name('order.formDetail');
+Route::post('/order-detail/{id}',[OrderController::class,'update'])->name('order.update');
+Route::get('/delivery',[OrderController::class,'delivery'])->name('delivery.show');
 
 Route::get('/user',[UserController::class,'index'])->name('userList');
 

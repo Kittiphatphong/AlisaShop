@@ -16,6 +16,8 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <style>
         input[type="number"] {
   -webkit-appearance: textfield;
@@ -78,6 +80,17 @@ input[type=number]::-webkit-outer-spin-button {
   text-align: center;
 }
 
+.show-cart li {
+  display: flex;
+}
+.card {
+  margin-bottom: 20px;
+}
+.card-img-top {
+  width: 200px;
+  height: 200px;
+  align-self: center;
+}
     </style>
         @livewireStyles
     </head>

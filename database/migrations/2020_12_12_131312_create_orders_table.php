@@ -17,10 +17,10 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->bigInteger('customer_id')->unsigned();
             $table->bigInteger('user_id');
-            $table->date('required_date');
-            $table->date('shipped_date');
-            $table->integer('order_status');
-            $table->string('remark');
+            $table->dateTime('required_date')->nullable();
+            $table->dateTime('shipped_date')->nullable();
+            $table->integer('order_status')->nullable();
+            $table->string('remark')->nullable();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->timestamps();
         });
