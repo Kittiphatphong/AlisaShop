@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\Auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,10 +21,10 @@ use App\Http\Controllers\userController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::middleware('auth')->group(function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->name('dashboard');
 
 Route::get('/product',[ProductController::class,'index'])->name('productList');
 
@@ -42,4 +43,10 @@ Route::get('/delivery',[OrderController::class,'delivery'])->name('delivery.show
 Route::get('/user',[UserController::class,'index'])->name('userList');
 
 
+
+});
 require __DIR__.'/auth.php';
+// Auth::routes([
+//     'register' => true,
+//     'login' => false,
+// ]);

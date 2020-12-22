@@ -91,6 +91,11 @@ input[type=number]::-webkit-outer-spin-button {
   height: 200px;
   align-self: center;
 }
+select.form-controlJ {
+  -moz-appearance: none;
+   -webkit-appearance: none;
+   appearance: none;
+}
     </style>
         @livewireStyles
     </head>

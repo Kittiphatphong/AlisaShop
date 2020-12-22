@@ -24,4 +24,12 @@ class Order extends Model
         }
         return number_format($countPrice)." LAK";
     }
+    public function sumMoney(){
+        $countPrice = 0;
+        foreach($this->product_orders as $all){
+        $countPrice += $all->quantity * $all->discount;
+        }
+        return ($countPrice);
+    }
+
 }
