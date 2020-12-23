@@ -36,8 +36,9 @@ class DeliveryIndex extends Component
     $this->dispatchBrowserEvent('openModalAdd');
     $this->money = $order->sumPrice();
     $this->orderId = $id;
+    $this->emit('getId',$id);
     }
-  
+
     public function moneyDefault(){
         $order = Order::find($this->orderId);
         $order->money = $order->sumMoney();
